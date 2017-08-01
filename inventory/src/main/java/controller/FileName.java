@@ -1,6 +1,6 @@
 package controller;
 
-public enum FileNames {
+public enum FileName {
 	PUBLICATIONS("/publications"),
 	PUBLICATIONTYPES("/publicationtypes"),
 	THEMES("/themes"),
@@ -10,7 +10,7 @@ public enum FileNames {
 	private String fileName;
 	private static final String extension = ".json";
 	
-	private FileNames(String fileName){
+	private FileName(String fileName){
 		this.fileName = fileName + extension;
 	}
 	

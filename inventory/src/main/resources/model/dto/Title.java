@@ -4,6 +4,8 @@ public class Title {
 	private String title;
 	
 	private String subtitle;
+	
+	public Title(){}
 
 	public Title(String title, String subtitle) {
 		this.title = title;

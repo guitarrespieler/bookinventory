@@ -1,6 +1,7 @@
 package dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class Publication {
 	private Author author;
@@ -11,9 +12,9 @@ public class Publication {
 	
 	private Title title;
 	
-	private PublicationType type;
+	private List<String> publicationType;
 	
-	private ThemeType theme;
+	private List<String> themes;
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -28,15 +29,12 @@ public class Publication {
 		if(this.author.equals(other.author) &&
 				this.publisher.equals(other.publisher) &&
 				this.dateOfPublish.equals(other.dateOfPublish) &&
-				this.title.equals(other.title) &&
-				this.type.equals(other.type))
+				this.title.equals(other.title))
 			return true;
 		
 		return false;
 	}
 	
-	
-
 	public Author getAuthor() {
 		return author;
 	}
@@ -69,14 +67,19 @@ public class Publication {
 		this.title = title;
 	}
 
-	public PublicationType getType() {
-		return type;
+	public List<String> getPublicationType() {
+		return publicationType;
 	}
 
-	public void setType(PublicationType type) {
-		this.type = type;
+	public void setPublicationType(List<String> publicationType) {
+		this.publicationType = publicationType;
 	}
-	
-	
 
+	public List<String> getThemes() {
+		return themes;
+	}
+
+	public void setThemes(List<String> themes) {
+		this.themes = themes;
+	}
 }

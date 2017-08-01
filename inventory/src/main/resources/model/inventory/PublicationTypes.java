@@ -1,9 +1,9 @@
-package dto;
+package inventory;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class PublicationType {
+public class PublicationTypes {
 	private List<String> types = new LinkedList<>();
 
 	public List<String> getTypes() {
@@ -13,7 +13,4 @@ public class PublicationType {
 	public void setTypes(List<String> types) {
 		this.types = types;
 	}
-		
-	
-
 }

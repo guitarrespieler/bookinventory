@@ -1,9 +1,9 @@
-package inventory;
+package model.inventory;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import dto.Publication;
+import model.dto.Publication;
 
 public class PublicationInventory {
 	private List<Publication> publications = new LinkedList<>();

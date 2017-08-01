@@ -1,9 +1,10 @@
-package inventory;
+package model.inventory;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import dto.Author;
+import model.dto.Author;
+
 
 public class AuthorInventory {
 	

@@ -1,4 +1,4 @@
-package dto;
+package model.dto;
 
 public class Title {
 	private String title;

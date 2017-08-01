@@ -1,4 +1,4 @@
-package inventory;
+package model.inventory;
 
 import java.util.LinkedList;
 import java.util.List;

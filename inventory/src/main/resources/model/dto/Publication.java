@@ -1,9 +1,9 @@
-package inventory;
+package dto;
 
 import java.util.Date;
 
 public class Publication {
-	private String author;
+	private Author author;
 	
 	private Publisher publisher;
 	
@@ -37,11 +37,11 @@ public class Publication {
 	
 	
 
-	public String getAuthor() {
+	public Author getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(String author) {
+	public void setAuthor(Author author) {
 		this.author = author;
 	}
 

@@ -7,17 +7,19 @@ import java.util.List;
 import java.util.Set;
 
 public class Publication {
-	private String author;
+	private String author = "";
 	
-	private String publisher;
+	private String publisher = "";
 	
 	private Date dateOfPublish;
 	
-	private Title title;
+	private String title = "";
 	
 	private Set<String> publicationType = new HashSet<>();
 	
 	private Set<String> categories = new HashSet<>();
+	
+	private boolean lendable = true;
 	
 	private List<Publication> subPublications = new LinkedList<>();
 	
@@ -54,9 +56,9 @@ public class Publication {
 
 	public void setDateOfPublish(Date dateOfPublish) {this.dateOfPublish = dateOfPublish;}
 
-	public Title getTitle() {return title;}
+	public String getTitle() {return title;}
 
-	public void setTitle(Title title) {this.title = title;}
+	public void setTitle(String title) {this.title = title;}
 	
 	public void addPublicationType(String type){publicationType.add(type);}
 
@@ -75,4 +77,12 @@ public class Publication {
 	public void removeSubPublication(Publication pub){subPublications.remove(pub);}
 	
 	public Object[] getSubPublications(){return subPublications.toArray();}
+
+	public boolean isLendable() {
+		return lendable;
+	}
+
+	public void setLendable(boolean lendable) {
+		this.lendable = lendable;
+	}
 }

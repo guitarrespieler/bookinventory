@@ -20,6 +20,8 @@ public class Publication {
 	
 	private String comment = "";
 	
+	private int numberOfPieces = 1;
+	
 	private Place placeOfPublication;
 	
 	private Set<String> publicationType = new HashSet<>();
@@ -28,7 +30,11 @@ public class Publication {
 	
 	private List<Publication> subPublications = new LinkedList<>();
 	
-	public int hashCode() {return (title + author + publisher + dateOfPublish.toString()).hashCode();}
+	public void incrementNumberOfPieces(){
+		numberOfPieces++;
+	}
+	
+	public int hashCode() {return (title + author + publisher).hashCode();}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -97,5 +103,41 @@ public class Publication {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public int getNumberOfPieces() {
+		return numberOfPieces;
+	}
+
+	public void setNumberOfPieces(int numberOfPieces) {
+		this.numberOfPieces = numberOfPieces;
+	}
+
+	public Place getPlaceOfPublication() {
+		return placeOfPublication;
+	}
+
+	public void setPlaceOfPublication(Place placeOfPublication) {
+		this.placeOfPublication = placeOfPublication;
+	}
+
+	public Set<String> getPublicationType() {
+		return publicationType;
+	}
+
+	public void setPublicationType(Set<String> publicationType) {
+		this.publicationType = publicationType;
+	}
+
+	public Set<String> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Set<String> categories) {
+		this.categories = categories;
+	}
+
+	public void setSubPublications(List<Publication> subPublications) {
+		this.subPublications = subPublications;
 	}
 }

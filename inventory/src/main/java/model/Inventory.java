@@ -1,12 +1,10 @@
 package model;
 
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 public class Inventory {
-	private List<Publication> publications = new LinkedList<>();
+	private Set<Publication> publications = new HashSet<>();
 	
 	private Set<String> authors = new HashSet<>();
 	
@@ -18,23 +16,38 @@ public class Inventory {
 	
 	private Set<String> categories = new HashSet<>();
 	
-	public boolean isEmpty(){
-		return publications.isEmpty() &&
-				authors.isEmpty() &&
-				publishers.isEmpty() &&
-				titles.isEmpty();
-	}
-
-	public List<Publication> getPublications() {
-		return publications;
-	}
-
+	private Set<String> rooms = new HashSet<>();
+	
+	private Set<String> bookCases = new HashSet<>();
+	
+	private Set<String> bookShelves = new HashSet<>();
+	
 	public void addPublication(Publication newPub){
+		if(publications.contains(newPub)){
+			publications.remove(newPub);
+			newPub.incrementNumberOfPieces();
+		}
 		publications.add(newPub);
 		
 		authors.add(newPub.getAuthor());
 		publishers.add(newPub.getPublisher());
 		titles.add(newPub.getTitle());
+		publicatoinTypes.addAll(newPub.getPublicationType());
+		categories.addAll(newPub.getCategories());
+		rooms.add(newPub.getPlaceOfPublication().getRoom());
+		bookCases.add(newPub.getPlaceOfPublication().getBookCase());
+	}
+	
+	public boolean isEmpty(){
+		return publications.isEmpty();
+	}
+
+	public Set<Publication> getPublications() {
+		return publications;
+	}
+
+	public void setPublications(Set<Publication> publications) {
+		this.publications = publications;
 	}
 
 	public Set<String> getAuthors() {
@@ -60,6 +73,44 @@ public class Inventory {
 	public void setTitles(Set<String> titles) {
 		this.titles = titles;
 	}
-	
-	
+
+	public Set<String> getPublicatoinTypes() {
+		return publicatoinTypes;
+	}
+
+	public void setPublicatoinTypes(Set<String> publicatoinTypes) {
+		this.publicatoinTypes = publicatoinTypes;
+	}
+
+	public Set<String> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Set<String> categories) {
+		this.categories = categories;
+	}
+
+	public Set<String> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(Set<String> rooms) {
+		this.rooms = rooms;
+	}
+
+	public Set<String> getBookCases() {
+		return bookCases;
+	}
+
+	public void setBookCases(Set<String> bookCases) {
+		this.bookCases = bookCases;
+	}
+
+	public Set<String> getBookShelves() {
+		return bookShelves;
+	}
+
+	public void setBookShelves(Set<String> bookShelves) {
+		this.bookShelves = bookShelves;
+	}
 }

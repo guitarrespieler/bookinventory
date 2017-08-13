@@ -6,13 +6,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Publication {
-	private String author = "";
+	private String title = "";
+	
+	private Set<String> author = new HashSet<>();
 	
 	private String publisher = "";
 	
 	private Date dateOfPublish = Calendar.getInstance().getTime();
-	
-	private String title = "";
 	
 	private boolean lendable = true;
 	
@@ -30,7 +30,7 @@ public class Publication {
 	
 	public Publication(){}
 	
-	public Publication(String author, String publisher, Date dateOfPublish, String title, boolean lendable,
+	public Publication(Set<String> author, String publisher, Date dateOfPublish, String title, boolean lendable,
 			String comment, int numberOfPieces, Place placeOfPublication, Set<String> publicationType,
 			Set<String> categories, Set<Publication> subPublications) {
 		this.author = author;
@@ -89,11 +89,11 @@ public class Publication {
 	}
 //getters & setters:
 
-	public String getAuthor() {
+	public Set<String> getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(String author) {
+	public void setAuthor(Set<String> author) {
 		this.author = author;
 	}
 

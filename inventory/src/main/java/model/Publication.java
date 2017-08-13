@@ -28,6 +28,24 @@ public class Publication {
 	
 	private Set<Publication> subPublications = new HashSet<>();
 	
+	public Publication(){}
+	
+	public Publication(String author, String publisher, Date dateOfPublish, String title, boolean lendable,
+			String comment, int numberOfPieces, Place placeOfPublication, Set<String> publicationType,
+			Set<String> categories, Set<Publication> subPublications) {
+		this.author = author;
+		this.publisher = publisher;
+		this.dateOfPublish = dateOfPublish;
+		this.title = title;
+		this.lendable = lendable;
+		this.comment = comment;
+		this.numberOfPieces = numberOfPieces;
+		this.placeOfPublication = placeOfPublication;
+		this.publicationType = publicationType;
+		this.categories = categories;
+		this.subPublications = subPublications;
+	}
+
 	public void incrementNumberOfPieces(){
 		numberOfPieces++;
 	}
@@ -58,39 +76,53 @@ public class Publication {
 		return false;
 	}
 	
-	public String getAuthor() {return author;}
-
-	public void setAuthor(String author) {this.author = author;}
-
-	public String getPublisher() {return publisher;}
-
-	public void setPublisher(String publisher) {this.publisher = publisher;}
-
-	public Date getDateOfPublish() {return dateOfPublish;}
-
-	public void setDateOfPublish(Date dateOfPublish) {this.dateOfPublish = dateOfPublish;}
-
-	public String getTitle() {return title;}
-
-	public void setTitle(String title) {this.title = title;}
-	
 	public void addPublicationType(String type){publicationType.add(type);}
 
 	public void removePublicationType(String type){publicationType.remove(type);}
 	
-	public Object[] getPublicationTypes(){return publicationType.toArray();}
 	
 	public void addCategory(String categoryName){categories.add(categoryName);}
 	
 	public void removeCategoryName(String categoryName){categories.remove(categoryName);}
 	
-	public Object[] getcategories() {return categories.toArray();}
 	
 	public void addSubPublication(Publication pub){subPublications.add(pub);}
 	
 	public void removeSubPublication(Publication pub){subPublications.remove(pub);}
 	
-	public Object[] getSubPublications(){return subPublications.toArray();}
+//getters & setters:
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public Date getDateOfPublish() {
+		return dateOfPublish;
+	}
+
+	public void setDateOfPublish(Date dateOfPublish) {
+		this.dateOfPublish = dateOfPublish;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	public boolean isLendable() {
 		return lendable;
@@ -138,6 +170,10 @@ public class Publication {
 
 	public void setCategories(Set<String> categories) {
 		this.categories = categories;
+	}
+
+	public Set<Publication> getSubPublications() {
+		return subPublications;
 	}
 
 	public void setSubPublications(Set<Publication> subPublications) {

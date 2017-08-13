@@ -26,9 +26,16 @@ public class Serializer {
 	
 	private Serializer(){}
 	
+	public static boolean doesInventoryExist(){
+		File file = new File(inventoryFileName);
+		
+		return file.exists();
+	}
+	
 	public static void exportInventory(Inventory inventory){
 		SXSSFWorkbook workbook = new SXSSFWorkbook();
 		
+		//TODO folytasd
 		
 	}
 	

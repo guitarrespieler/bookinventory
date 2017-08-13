@@ -31,7 +31,7 @@ public class Inventory {
 		}
 		publications.add(newPub);
 		
-		authors.add(newPub.getAuthor());
+		authors.addAll(newPub.getAuthor());
 		publishers.add(newPub.getPublisher());
 		titles.add(newPub.getTitle());
 		publicatoinTypes.addAll(newPub.getPublicationType());

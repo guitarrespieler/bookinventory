@@ -12,7 +12,7 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 import com.google.gson.Gson;
 
-import model.inventory.Inventory;
+import model.Inventory;
 
 public class Serializer {
 	

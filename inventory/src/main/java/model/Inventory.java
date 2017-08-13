@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class Inventory {
@@ -36,6 +37,22 @@ public class Inventory {
 		categories.addAll(newPub.getCategories());
 		rooms.add(newPub.getPlaceOfPublication().getRoom());
 		bookCases.add(newPub.getPlaceOfPublication().getBookCase());
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("The following publications are stored in the book inventory:\n\n");
+		
+		Iterator<Publication> iterator = publications.iterator();
+		
+		while(iterator.hasNext()){
+			sb.append(iterator.next().toString());
+			sb.append("\n");
+		}
+		
+		return sb.toString();
 	}
 	
 	public boolean isEmpty(){

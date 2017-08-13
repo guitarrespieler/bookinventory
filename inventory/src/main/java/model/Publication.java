@@ -3,8 +3,6 @@ package model;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 public class Publication {
@@ -22,16 +20,21 @@ public class Publication {
 	
 	private int numberOfPieces = 1;
 	
-	private Place placeOfPublication;
+	private Place placeOfPublication = new Place();
 	
 	private Set<String> publicationType = new HashSet<>();
 	
 	private Set<String> categories = new HashSet<>();
 	
-	private List<Publication> subPublications = new LinkedList<>();
+	private Set<Publication> subPublications = new HashSet<>();
 	
 	public void incrementNumberOfPieces(){
 		numberOfPieces++;
+	}
+	
+	@Override
+	public String toString() {
+		return title + " - " + author;
 	}
 	
 	public int hashCode() {return (title + author + publisher).hashCode();}
@@ -137,7 +140,7 @@ public class Publication {
 		this.categories = categories;
 	}
 
-	public void setSubPublications(List<Publication> subPublications) {
+	public void setSubPublications(Set<Publication> subPublications) {
 		this.subPublications = subPublications;
 	}
 }

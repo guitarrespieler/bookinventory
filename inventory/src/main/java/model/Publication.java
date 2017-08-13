@@ -46,6 +46,18 @@ public class Publication {
 		this.subPublications = subPublications;
 	}
 
+	public void addPublicationType(String type){publicationType.add(type);}
+
+	public void removePublicationType(String type){publicationType.remove(type);}
+	
+	public void addCategory(String categoryName){categories.add(categoryName);}
+	
+	public void removeCategoryName(String categoryName){categories.remove(categoryName);}
+	
+	public void addSubPublication(Publication pub){subPublications.add(pub);}
+	
+	public void removeSubPublication(Publication pub){subPublications.remove(pub);}
+	
 	public void incrementNumberOfPieces(){
 		numberOfPieces++;
 	}
@@ -75,21 +87,6 @@ public class Publication {
 		
 		return false;
 	}
-	
-	public void addPublicationType(String type){publicationType.add(type);}
-
-	public void removePublicationType(String type){publicationType.remove(type);}
-	
-	
-	public void addCategory(String categoryName){categories.add(categoryName);}
-	
-	public void removeCategoryName(String categoryName){categories.remove(categoryName);}
-	
-	
-	public void addSubPublication(Publication pub){subPublications.add(pub);}
-	
-	public void removeSubPublication(Publication pub){subPublications.remove(pub);}
-	
 //getters & setters:
 
 	public String getAuthor() {

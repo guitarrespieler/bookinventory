@@ -15,6 +15,13 @@ public class Inventory {
 	private Set<String> publishers = new HashSet<>();
 	
 	private Set<String> titles = new HashSet<>();
+	
+	public boolean isEmpty(){
+		return publications.isEmpty() &&
+				authors.isEmpty() &&
+				publishers.isEmpty() &&
+				titles.isEmpty();
+	}
 
 	public List<Publication> getPublications() {
 		return publications;

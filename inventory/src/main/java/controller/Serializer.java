@@ -8,6 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+
 import com.google.gson.Gson;
 
 import model.inventory.Inventory;
@@ -23,6 +25,12 @@ public class Serializer {
 	private static Gson gson = new Gson();
 	
 	private Serializer(){}
+	
+	public static void exportInventory(Inventory inventory){
+		SXSSFWorkbook workbook = new SXSSFWorkbook();
+		
+		
+	}
 	
 	public static void saveInventory(Inventory inventory){
 		String jsonStr = gson.toJson(inventory);

@@ -14,6 +14,10 @@ public class Inventory {
 	
 	private Set<String> titles = new HashSet<>();
 	
+	private Set<String> publicatoinTypes = new HashSet<>();
+	
+	private Set<String> categories = new HashSet<>();
+	
 	public boolean isEmpty(){
 		return publications.isEmpty() &&
 				authors.isEmpty() &&
@@ -25,8 +29,12 @@ public class Inventory {
 		return publications;
 	}
 
-	public void setPublications(List<Publication> publications) {
-		this.publications = publications;
+	public void addPublication(Publication newPub){
+		publications.add(newPub);
+		
+		authors.add(newPub.getAuthor());
+		publishers.add(newPub.getPublisher());
+		titles.add(newPub.getTitle());
 	}
 
 	public Set<String> getAuthors() {

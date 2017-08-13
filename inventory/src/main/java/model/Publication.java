@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -11,15 +12,17 @@ public class Publication {
 	
 	private String publisher = "";
 	
-	private Date dateOfPublish;
+	private Date dateOfPublish = Calendar.getInstance().getTime();
 	
 	private String title = "";
+	
+	private boolean lendable = true;
+	
+	private String comment = "";
 	
 	private Set<String> publicationType = new HashSet<>();
 	
 	private Set<String> categories = new HashSet<>();
-	
-	private boolean lendable = true;
 	
 	private List<Publication> subPublications = new LinkedList<>();
 	
@@ -84,5 +87,13 @@ public class Publication {
 
 	public void setLendable(boolean lendable) {
 		this.lendable = lendable;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 }

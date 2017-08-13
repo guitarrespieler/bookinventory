@@ -1,21 +1,28 @@
 package model.dto;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class Publication {
-	private Author author;
+	private String author;
 	
-	private Publisher publisher;
+	private String publisher;
 	
 	private Date dateOfPublish;
 	
 	private Title title;
 	
-	private List<String> publicationType;
+	private Set<String> publicationType = new HashSet<>();
 	
-	private List<String> themes;
+	private Set<String> categories = new HashSet<>();
 	
+	private List<Publication> subPublications = new LinkedList<>();
+	
+	public int hashCode() {return (title + author + publisher + dateOfPublish.toString()).hashCode();}
+
 	@Override
 	public boolean equals(Object obj) {
 		if(obj == null)
@@ -35,51 +42,37 @@ public class Publication {
 		return false;
 	}
 	
-	public Author getAuthor() {
-		return author;
-	}
+	public String getAuthor() {return author;}
 
-	public void setAuthor(Author author) {
-		this.author = author;
-	}
+	public void setAuthor(String author) {this.author = author;}
 
-	public Publisher getPublisher() {
-		return publisher;
-	}
+	public String getPublisher() {return publisher;}
 
-	public void setPublisher(Publisher publisher) {
-		this.publisher = publisher;
-	}
+	public void setPublisher(String publisher) {this.publisher = publisher;}
 
-	public Date getDateOfPublish() {
-		return dateOfPublish;
-	}
+	public Date getDateOfPublish() {return dateOfPublish;}
 
-	public void setDateOfPublish(Date dateOfPublish) {
-		this.dateOfPublish = dateOfPublish;
-	}
+	public void setDateOfPublish(Date dateOfPublish) {this.dateOfPublish = dateOfPublish;}
 
-	public Title getTitle() {
-		return title;
-	}
+	public Title getTitle() {return title;}
 
-	public void setTitle(Title title) {
-		this.title = title;
-	}
+	public void setTitle(Title title) {this.title = title;}
+	
+	public void addPublicationType(String type){publicationType.add(type);}
 
-	public List<String> getPublicationType() {
-		return publicationType;
-	}
-
-	public void setPublicationType(List<String> publicationType) {
-		this.publicationType = publicationType;
-	}
-
-	public List<String> getThemes() {
-		return themes;
-	}
-
-	public void setThemes(List<String> themes) {
-		this.themes = themes;
-	}
+	public void removePublicationType(String type){publicationType.remove(type);}
+	
+	public Object[] getPublicationTypes(){return publicationType.toArray();}
+	
+	public void addCategory(String categoryName){categories.add(categoryName);}
+	
+	public void removeCategoryName(String categoryName){categories.remove(categoryName);}
+	
+	public Object[] getcategories() {return categories.toArray();}
+	
+	public void addSubPublication(Publication pub){subPublications.add(pub);}
+	
+	public void removeSubPublication(Publication pub){subPublications.remove(pub);}
+	
+	public Object[] getSubPublications(){return subPublications.toArray();}
 }

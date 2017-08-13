@@ -10,44 +10,28 @@ import java.io.PrintWriter;
 
 import com.google.gson.Gson;
 
-import model.inventory.AuthorInventory;
-import model.inventory.PublicationInventory;
-import model.inventory.PublicationTypes;
-import model.inventory.ThemeInventory;
-import model.inventory.TitleInventory;
+import model.inventory.Inventory;
 
 public class Serializer {
-
-	Gson gson = new Gson();
 	
-	public void createInventoryFiles(){
-		for(FileName name : FileName.values()){
-			File temp = new File(name.getFileName());
-			try {
-				temp.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-				continue;
-			}
-		}
-	}
+	private static final String jsonExt = ".json";
+	private static final String xlsxExt = ".xlsx";
 	
-	public boolean AreInventoryFilesExists(){
-		for(FileName name : FileName.values()){
-			if(!isInventoryFileExist(name))
-				return false;
-		}
-		return true;
-	}
+	private static final String inventoryFileName = "bookinventory" + jsonExt;
+	private static final String exportFileName = "könyvgyűjtemény" + xlsxExt;
 
-	private boolean isInventoryFileExist(FileName name) {
-		File file = new File(name.getFileName());
+	private static Gson gson = new Gson();
+	
+	private Serializer(){}
+	
+	public static void saveInventory(Inventory inventory){
+		String jsonStr = gson.toJson(inventory);
 		
-		return file.exists();
+		saveFile(inventoryFileName, jsonStr);
 	}
 	
-	public void saveFile(FileName name, String jsonStr){
-		File file = new File(name.getFileName());
+	private static void saveFile(String  filename, String jsonStr){
+		File file = new File(filename);
 		
 		FileWriter fw = null;
 		PrintWriter writer = null;
@@ -71,10 +55,16 @@ public class Serializer {
 		}
 	}
 	
-	public String loadFile(FileName name){
+	public static Inventory loadInventory(){
+		String jsonStr = loadFile(inventoryFileName);
+		
+		return gson.fromJson(jsonStr, Inventory.class);
+	}
+	
+	private static String loadFile(String fileName){
 		StringBuilder sb = new StringBuilder();
 		
-		File file = new File(name.getFileName());
+		File file = new File(fileName);
 		
 		if(!file.exists())
 			return "";
@@ -104,55 +94,5 @@ public class Serializer {
 			}
 		}
 		return sb.toString();
-	}
-	
-	public void serialize(PublicationInventory inventory){
-		String jsonStr = gson.toJson(inventory);		
-		saveFile(FileName.PUBLICATIONS, jsonStr);
-	}
-	
-	public PublicationInventory deserializePublicationInventory(){
-		String jsonStr = loadFile(FileName.PUBLICATIONS);
-		return gson.fromJson(jsonStr, PublicationInventory.class);
-	}
-	
-	public void serialize(AuthorInventory inventory){
-		String jsonStr = gson.toJson(inventory);		
-		saveFile(FileName.AUTHORS, jsonStr);
-	}
-	
-	public AuthorInventory deserializeAuthorInventory(){
-		String jsonStr = loadFile(FileName.AUTHORS);
-		return gson.fromJson(jsonStr, AuthorInventory.class);
-	}
-	
-	public void serialize(PublicationTypes types){
-		String jsonStr = gson.toJson(types);		
-		saveFile(FileName.PUBLICATIONTYPES, jsonStr);
-	}
-	
-	public PublicationTypes deserializePublicationTypes(){
-		String jsonStr = loadFile(FileName.PUBLICATIONTYPES);
-		return gson.fromJson(jsonStr, PublicationTypes.class);
-	}
-	
-	public void serialize(ThemeInventory inventory){
-		String jsonStr = gson.toJson(inventory);		
-		saveFile(FileName.THEMES, jsonStr);
-	}
-	
-	public ThemeInventory deserializeThemeInventory(){
-		String jsonStr = loadFile(FileName.THEMES);
-		return gson.fromJson(jsonStr, ThemeInventory.class);
-	}
-	
-	public void serialize(TitleInventory inventory){
-		String jsonStr = gson.toJson(inventory);		
-		saveFile(FileName.PUBLICATIONS, jsonStr);
-	}
-	
-	public TitleInventory deserializeTitleInventory(){
-		String jsonStr = loadFile(FileName.TITLES);
-		return gson.fromJson(jsonStr, TitleInventory.class);
 	}
 }

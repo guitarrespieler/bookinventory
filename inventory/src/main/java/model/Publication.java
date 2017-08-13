@@ -20,6 +20,8 @@ public class Publication {
 	
 	private String comment = "";
 	
+	private Place placeOfPublication;
+	
 	private Set<String> publicationType = new HashSet<>();
 	
 	private Set<String> categories = new HashSet<>();

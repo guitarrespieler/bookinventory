@@ -25,13 +25,19 @@ public class Inventory {
 	
 	
 	public void addPublication(Publication newPub){
-		if(publications.contains(newPub)){
-			publications.remove(newPub);
-			newPub.incrementNumberOfPieces();
+		Iterator<Publication> iterator = publications.iterator();
+		
+		while (iterator.hasNext()) {
+			Publication publication = (Publication) iterator.next();
+			if(!publication.equals(newPub))
+				continue;
+			
+			publication.incrementNumberOfPieces();
+			return;
 		}
 		publications.add(newPub);
 		
-		authors.addAll(newPub.getAuthor());
+		authors.addAll(newPub.getAuthors());
 		publishers.add(newPub.getPublisher());
 		titles.add(newPub.getTitle());
 		publicatoinTypes.addAll(newPub.getPublicationType());

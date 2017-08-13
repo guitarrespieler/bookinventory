@@ -8,7 +8,7 @@ import java.util.Set;
 public class Publication {
 	private String title = "";
 	
-	private Set<String> author = new HashSet<>();
+	private Set<String> authors = new HashSet<>();
 	
 	private String publisher = "";
 	
@@ -30,33 +30,25 @@ public class Publication {
 	
 	public Publication(){}
 	
-	public Publication(Set<String> author, String publisher, Date dateOfPublish, String title, boolean lendable,
-			String comment, int numberOfPieces, Place placeOfPublication, Set<String> publicationType,
-			Set<String> categories, Set<Publication> subPublications) {
-		this.author = author;
-		this.publisher = publisher;
-		this.dateOfPublish = dateOfPublish;
-		this.title = title;
-		this.lendable = lendable;
-		this.comment = comment;
-		this.numberOfPieces = numberOfPieces;
-		this.placeOfPublication = placeOfPublication;
-		this.publicationType = publicationType;
-		this.categories = categories;
-		this.subPublications = subPublications;
+	public Publication addAuthor(String author){
+		authors.add(author);
+		return this;
+	}
+	
+	public Publication addPublicationType(String type){
+		publicationType.add(type);
+		return this;		
 	}
 
-	public void addPublicationType(String type){publicationType.add(type);}
-
-	public void removePublicationType(String type){publicationType.remove(type);}
+	public Publication addCategory(String categoryName){
+		categories.add(categoryName);
+		return this;
+	}
 	
-	public void addCategory(String categoryName){categories.add(categoryName);}
-	
-	public void removeCategoryName(String categoryName){categories.remove(categoryName);}
-	
-	public void addSubPublication(Publication pub){subPublications.add(pub);}
-	
-	public void removeSubPublication(Publication pub){subPublications.remove(pub);}
+	public Publication addSubPublication(Publication pub){
+		subPublications.add(pub);
+		return this;
+	}
 	
 	public void incrementNumberOfPieces(){
 		numberOfPieces++;
@@ -64,10 +56,10 @@ public class Publication {
 	
 	@Override
 	public String toString() {
-		return title + " - " + author;
+		return title + " - " + authors;
 	}
 	
-	public int hashCode() {return (title + author + publisher).hashCode();}
+	public int hashCode() {return (title + authors.toString() + publisher).hashCode();}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -79,22 +71,18 @@ public class Publication {
 		
 		Publication other = (Publication) obj;
 		
-		if(this.author.equals(other.author) &&
+		return this.authors.equals(other.authors) &&
 				this.publisher.equals(other.publisher) &&
-				this.dateOfPublish.equals(other.dateOfPublish) &&
-				this.title.equals(other.title))
-			return true;
-		
-		return false;
+				this.title.equals(other.title);
 	}
 //getters & setters:
 
-	public Set<String> getAuthor() {
-		return author;
+	public Set<String> getAuthors() {
+		return authors;
 	}
 
-	public void setAuthor(Set<String> author) {
-		this.author = author;
+	public void setAuthors(Set<String> author) {
+		this.authors = author;
 	}
 
 	public String getPublisher() {

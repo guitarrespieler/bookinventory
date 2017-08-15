@@ -25,7 +25,7 @@ public class Export {
 		while (it.hasNext()) {
 			Publication publication = it.next();
 			
-			
+			//TODO folytasd
 		}
 	}
 }

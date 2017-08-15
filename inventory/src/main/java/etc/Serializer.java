@@ -1,4 +1,4 @@
-package controller;
+package etc;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,8 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-
 import com.google.gson.Gson;
 
 import model.Inventory;
@@ -17,27 +15,10 @@ import model.Inventory;
 public class Serializer {
 	
 	private static final String jsonExt = ".json";
-	private static final String xlsxExt = ".xlsx";
-	
 	private static final String inventoryFileName = "bookinventory" + jsonExt;
-	private static final String exportFileName = "könyvgyűjtemény" + xlsxExt;
+	
 
 	private static Gson gson = new Gson();
-	
-	private Serializer(){}
-	
-	public static boolean doesInventoryExist(){
-		File file = new File(inventoryFileName);
-		
-		return file.exists();
-	}
-	
-	public static void exportInventory(Inventory inventory){
-		SXSSFWorkbook workbook = new SXSSFWorkbook();
-		
-		//TODO folytasd
-		
-	}
 	
 	public static void saveInventory(Inventory inventory){
 		String jsonStr = gson.toJson(inventory);
@@ -71,6 +52,9 @@ public class Serializer {
 	}
 	
 	public static Inventory loadInventory(){
+		if(!doesInventoryExist())
+			return new Inventory();
+		
 		String jsonStr = loadFile(inventoryFileName);
 		
 		return gson.fromJson(jsonStr, Inventory.class);
@@ -109,5 +93,11 @@ public class Serializer {
 			}
 		}
 		return sb.toString();
+	}
+	
+	private static boolean doesInventoryExist(){
+		File file = new File(inventoryFileName);
+		
+		return file.exists();
 	}
 }

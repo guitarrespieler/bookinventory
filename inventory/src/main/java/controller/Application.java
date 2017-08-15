@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Calendar;
 
+import etc.Serializer;
 import model.Inventory;
 import model.Publication;
 
@@ -9,12 +10,7 @@ public class Application {
 
 	public static void main(String[] args) {
 		
-		Inventory inventory;
-		
-		if(Serializer.doesInventoryExist())
-			inventory = Serializer.loadInventory();
-		else
-			inventory = new Inventory();
+		Inventory inventory = Serializer.loadInventory();
 		
 		Publication book = new Publication();
 		

@@ -37,11 +37,11 @@ public class Inventory {
 		}
 		publications.add(newPub);
 		
-		authors.addAll(newPub.getAuthors());
+		authors.addAll(newPub.getDto().getAuthors());
 		publishers.add(newPub.getPublisher());
-		titles.add(newPub.getTitle());
-		publicatoinTypes.addAll(newPub.getPublicationType());
-		categories.addAll(newPub.getCategories());
+		titles.add(newPub.getDto().getTitle());
+		publicatoinTypes.addAll(newPub.getDto().getPublicationType());
+		categories.addAll(newPub.getDto().getCategories());
 		rooms.add(newPub.getPlaceOfPublication().getRoom());
 		bookCases.add(newPub.getPlaceOfPublication().getBookCase());
 	}

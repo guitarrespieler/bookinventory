@@ -3,6 +3,7 @@ package etc;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.apache.poi.xssf.streaming.SXSSFRow;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 import model.Inventory;
@@ -18,6 +19,8 @@ public class Export {
 		
 		SXSSFWorkbook workbook = new SXSSFWorkbook();
 		
+		SXSSFRow header = createRow();
+		
 		Set<Publication> publications = inventory.getPublications();
 		
 		Iterator<Publication> it = publications.iterator();
@@ -25,7 +28,12 @@ public class Export {
 		while (it.hasNext()) {
 			Publication publication = it.next();
 			
-			//TODO folytasd
+			
 		}
+	}
+
+	private static SXSSFRow createRow() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

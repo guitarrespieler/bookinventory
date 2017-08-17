@@ -6,9 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Publication {
-	private String title = "";
-	
-	private Set<String> authors = new HashSet<>();
+	private PublicationDTO dto = new PublicationDTO();
 	
 	private String publisher = "";
 	
@@ -16,32 +14,30 @@ public class Publication {
 	
 	private boolean lendable = true;
 	
-	private String comment = "";
-	
 	private int numberOfPieces = 1;
 	
 	private Place placeOfPublication = new Place();
-	
-	private Set<String> publicationType = new HashSet<>();
-	
-	private Set<String> categories = new HashSet<>();
 	
 	private Set<Publication> subPublications = new HashSet<>();
 	
 	public Publication(){}
 	
 	public Publication addAuthor(String author){
-		authors.add(author);
+		dto.getAuthors().add(author);
 		return this;
 	}
 	
 	public Publication addPublicationType(String type){
-		publicationType.add(type);
+		dto.getPublicationType().add(type);
 		return this;		
+	}
+	
+	public boolean hasSubPublications(){
+		return !subPublications.isEmpty();
 	}
 
 	public Publication addCategory(String categoryName){
-		categories.add(categoryName);
+		dto.getCategories().add(categoryName);
 		return this;
 	}
 	
@@ -56,10 +52,10 @@ public class Publication {
 	
 	@Override
 	public String toString() {
-		return title + " - " + authors;
+		return dto.getTitle() + " - " + dto.getAuthors().toString();
 	}
 	
-	public int hashCode() {return (title + authors.toString() + publisher).hashCode();}
+	public int hashCode() {return (dto.getTitle() + dto.getAuthors().toString() + publisher).hashCode();}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -71,19 +67,11 @@ public class Publication {
 		
 		Publication other = (Publication) obj;
 		
-		return this.authors.equals(other.authors) &&
+		return dto.getAuthors().equals(other.dto.getAuthors()) &&
 				this.publisher.equals(other.publisher) &&
-				this.title.equals(other.title);
+				dto.getTitle().equals(other.dto.getTitle());
 	}
 //getters & setters:
-
-	public Set<String> getAuthors() {
-		return authors;
-	}
-
-	public void setAuthors(Set<String> author) {
-		this.authors = author;
-	}
 
 	public String getPublisher() {
 		return publisher;
@@ -101,28 +89,12 @@ public class Publication {
 		this.dateOfPublish = dateOfPublish;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public boolean isLendable() {
 		return lendable;
 	}
 
 	public void setLendable(boolean lendable) {
 		this.lendable = lendable;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
 	}
 
 	public int getNumberOfPieces() {
@@ -141,27 +113,19 @@ public class Publication {
 		this.placeOfPublication = placeOfPublication;
 	}
 
-	public Set<String> getPublicationType() {
-		return publicationType;
-	}
-
-	public void setPublicationType(Set<String> publicationType) {
-		this.publicationType = publicationType;
-	}
-
-	public Set<String> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(Set<String> categories) {
-		this.categories = categories;
-	}
-
 	public Set<Publication> getSubPublications() {
 		return subPublications;
 	}
 
 	public void setSubPublications(Set<Publication> subPublications) {
 		this.subPublications = subPublications;
+	}
+
+	public PublicationDTO getDto() {
+		return dto;
+	}
+
+	public void setDto(PublicationDTO dto) {
+		this.dto = dto;
 	}
 }

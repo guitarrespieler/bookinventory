@@ -1,8 +1,11 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class Publication {
@@ -19,6 +22,12 @@ public class Publication {
 	private Place placeOfPublication = new Place();
 	
 	private Set<Publication> subPublications = new HashSet<>();
+
+	public static final String stringVal = "STRING";
+
+	public static final String dateVal = "DATE";
+
+	public static final String intVal = "INT";
 	
 	public Publication(){}
 	
@@ -127,5 +136,29 @@ public class Publication {
 
 	public void setDto(PublicationDTO dto) {
 		this.dto = dto;
+	}
+
+	/**
+	 * Key: value to write into the export file
+	 * value: type of the data (String, Date ? )
+	 * @return
+	 */
+	public LinkedHashMap<String, String> getExportData() {
+		LinkedHashMap<String, String> retMap = new LinkedHashMap<>();
+		
+		retMap.put(dto.getTitle(), stringVal);
+		retMap.put(dto.getAuthors().toString(), stringVal);
+		retMap.put(publisher, stringVal);
+		retMap.put((new SimpleDateFormat("YYYY-MM-DD").format(dateOfPublish)), dateVal);
+		retMap.put(dto.getCategories().toString(), stringVal);
+		retMap.put(hasSubPublications()? "igen": "nem", stringVal);
+		retMap.put(String.valueOf(numberOfPieces), intVal);
+		retMap.put(dto.getComment(), stringVal);
+		retMap.put(lendable? "igen": "nem", stringVal);
+		retMap.put(placeOfPublication.getRoom(), stringVal);
+		retMap.put(placeOfPublication.getBookCase(), stringVal);
+		retMap.put(placeOfPublication.getBookShelf(), stringVal);
+		
+		return retMap;
 	}
 }

@@ -5,11 +5,14 @@ public enum ExportHeader {
 	author("Szerző"),
 	publisher("Kiadó"),
 	date_of_publish("Kiadás dátuma"),
-	number_of_pieces("darabszám"),
 	categories("kategória"),
+	hasSubpublications("Több művet tartalmaz"),
+	number_of_pieces("darabszám"),
 	comment("megjegyzés"),
-	lendable("kölcsönadható");
-	
+	lendable("kölcsönadható"),
+	room("szoba"),
+	bookCase("szekrény"),
+	bookShelf("polc");
 	
 	private String headerName = "";
 	

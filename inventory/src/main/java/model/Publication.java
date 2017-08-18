@@ -2,8 +2,6 @@ package model;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Set;
@@ -28,6 +26,8 @@ public class Publication {
 	public static final String dateVal = "DATE";
 
 	public static final String intVal = "INT";
+	
+	
 	
 	public Publication(){}
 	
@@ -74,24 +74,78 @@ public class Publication {
 		return dto.getTitle() + " - " + dto.getAuthors().toString();
 	}
 	
-	public int hashCode() {return (dto.getTitle() + dto.getAuthors().toString() + publisher).hashCode();}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dateOfPublish == null) ? 0 : dateOfPublish.hashCode());
+		result = prime * result + ((dto == null) ? 0 : dto.hashCode());
+		result = prime * result + (lendable ? 1231 : 1237);
+		result = prime * result + numberOfPieces;
+		result = prime * result + ((placeOfPublication == null) ? 0 : placeOfPublication.hashCode());
+		result = prime * result + ((publisher == null) ? 0 : publisher.hashCode());
+		result = prime * result + ((subPublications == null) ? 0 : subPublications.hashCode());
+		return result;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if(obj == null)
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
 			return false;
-		
-		if(!this.getClass().equals(obj.getClass()))
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
-		
+		}
 		Publication other = (Publication) obj;
-		
-		return dto.getAuthors().equals(other.dto.getAuthors()) &&
-				this.publisher.equals(other.publisher) &&
-				dto.getTitle().equals(other.dto.getTitle());
+		if (dateOfPublish == null) {
+			if (other.dateOfPublish != null) {
+				return false;
+			}
+		} else if (!dateOfPublish.equals(other.dateOfPublish)) {
+			return false;
+		}
+		if (dto == null) {
+			if (other.dto != null) {
+				return false;
+			}
+		} else if (!dto.equals(other.dto)) {
+			return false;
+		}
+		if (lendable != other.lendable) {
+			return false;
+		}
+		if (numberOfPieces != other.numberOfPieces) {
+			return false;
+		}
+		if (placeOfPublication == null) {
+			if (other.placeOfPublication != null) {
+				return false;
+			}
+		} else if (!placeOfPublication.equals(other.placeOfPublication)) {
+			return false;
+		}
+		if (publisher == null) {
+			if (other.publisher != null) {
+				return false;
+			}
+		} else if (!publisher.equals(other.publisher)) {
+			return false;
+		}
+		if (subPublications == null) {
+			if (other.subPublications != null) {
+				return false;
+			}
+		} else if (!subPublications.equals(other.subPublications)) {
+			return false;
+		}
+		return true;
 	}
-//getters & setters:
 
+//getters & setters:
+	
 	public String getPublisher() {
 		return publisher;
 	}

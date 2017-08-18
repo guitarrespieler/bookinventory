@@ -63,6 +63,8 @@ public class newBookScreenController {
 	private Set<String> bookCases = new HashSet<>();
 	private Set<String> bookshelves = new HashSet<>();
 	
+	private Set<Publication> subPublications = new HashSet<>();
+	
 	public newBookScreenController(Inventory inventory) {
 		this.inventory = inventory;
 		
@@ -88,6 +90,23 @@ public class newBookScreenController {
 		clearSets();
 	}
 
+	private Publication createPublicationFromFields() {
+		Publication newPub = new Publication();
+		
+		newPub.addTitle(titleTF.getText()).
+		addAuthors(authors).
+		addCategories(categories).
+		addPublicationTypes(pubTypes).
+		addSubPublications(subPublications).
+		addComment(comment.getText()).
+		setLendable(lendableCB.isSelected());
+		
+		newPub.setDateOfPublish(dateOfPublish.getValue());
+		newPub.setPublisher(publisherTF.getText());
+		
+		return newPub;
+	}
+
 	private void clearSets() {
 		authors.clear();
 		pubTypes.clear();
@@ -96,22 +115,5 @@ public class newBookScreenController {
 		bookCases.clear();
 		bookshelves.clear();		
 	}
-
-	private Publication createPublicationFromFields() {
-		Publication newPub = new Publication();
-		
-		newPub.addTitle(titleTF.getText()).
-		addAuthors(authors).
-		addCategories(categories).
-		addPublicationTypes(pubTypes).
-		addComment(comment.getText())
-		.setLendable(lendableCB.isSelected());
-		
-		newPub.setDateOfPublish(dateOfPublish.getValue());
-		newPub.setPublisher(publisherTF.getText());
-		
-		return newPub;
-	}
-	
 
 }

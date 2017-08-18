@@ -7,6 +7,14 @@ public class Place {
 	
 	private String bookShelf = "";
 	
+	public Place(){}
+	
+	public Place(String room, String bookCase, String shelf){
+		this.room = room;
+		this.bookCase = bookCase;
+		this.bookShelf = shelf;
+	}
+	
 	@Override
 	public int hashCode() {
 		return (room + bookCase + bookShelf).hashCode();

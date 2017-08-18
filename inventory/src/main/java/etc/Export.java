@@ -16,6 +16,7 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 import model.Inventory;
 import model.Publication;
+import model.SubPublication;
 
 public class Export {
 	private static final String xlsxExt = ".xlsx";
@@ -27,22 +28,29 @@ public class Export {
 		
 		SXSSFWorkbook workbook = new SXSSFWorkbook();
 		
-		Sheet mainSheet = workbook.createSheet("könyvek");
+		Sheet publicatonSheet = workbook.createSheet("kiadványok");
+		Sheet bookSheet = workbook.createSheet("művek");
 		
-		createHeaderRow(mainSheet);
+		createHeaderRow(publicatonSheet);
 		
 		Set<Publication> publications = inventory.getPublications();
 		
 		Iterator<Publication> it = publications.iterator();
 		
-		int rowNum = 1;
+		int publicationSheetRowNum = 1;
+		int bookSheetRowNum = 1;
 		
 		while (it.hasNext()) {
 			Publication publication = it.next();
 			
-			Row row = mainSheet.createRow(rowNum++);
+			Row row = publicatonSheet.createRow(publicationSheetRowNum++);
 			
 			fillRow(publication, row);
+			
+			if(publication.hasSubPublications()){
+				Row  bookSheetRow = bookSheet.createRow(bookSheetRowNum++);
+				Set<SubPublication> subpubs = publication.getSubPublications();
+			}
 		}
 		
 		writeContentToDisk(workbook);
@@ -78,7 +86,7 @@ public class Export {
 			case Publication.dateVal:
 				SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
 				cell.setCellValue(format.parse(key));
-
+				break;
 			default:
 				cell.setCellValue(key);
 				break;

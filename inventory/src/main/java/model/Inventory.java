@@ -25,16 +25,19 @@ public class Inventory {
 	
 	
 	public void addPublication(Publication newPub){
-		Iterator<Publication> iterator = publications.iterator();
-		
-		while (iterator.hasNext()) {
-			Publication publication = (Publication) iterator.next();
-			if(!publication.equals(newPub))
-				continue;
+		if(publications.contains(newPub)){
+			Iterator<Publication> iterator = publications.iterator();
 			
-			publication.incrementNumberOfPieces();
-			return;
+			while (iterator.hasNext()) {
+				Publication publication = (Publication) iterator.next();
+				if(!publication.equals(newPub))
+					continue;
+				
+				publication.incrementNumberOfPieces();
+				return;
+			}
 		}
+		
 		publications.add(newPub);
 		
 		authors.addAll(newPub.getDto().getAuthors());

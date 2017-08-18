@@ -19,7 +19,7 @@ public class Publication {
 	
 	private Place placeOfPublication = new Place();
 	
-	private Set<Publication> subPublications = new HashSet<>();
+	private Set<SubPublication> subPublications = new HashSet<>();
 
 	public static final String stringVal = "STRING";
 
@@ -36,8 +36,18 @@ public class Publication {
 		return this;
 	}
 	
+	public Publication addAuthor(String author){
+		dto.getAuthors().add(author);
+		return this;
+	}
+	
 	public Publication addAuthors(Set<String> authors){
 		dto.getAuthors().addAll(authors);
+		return this;
+	}
+	
+	public Publication addPublicationType(String type){
+		dto.getPublicationType().add(type);
 		return this;
 	}
 	
@@ -49,13 +59,18 @@ public class Publication {
 	public boolean hasSubPublications(){
 		return !subPublications.isEmpty();
 	}
+	
+	public Publication addCategory(String category){
+		dto.getCategories().add(category);
+		return this;
+	}
 
 	public Publication addCategories(Set<String> categories){
 		dto.getCategories().addAll(categories);
 		return this;
 	}
 	
-	public Publication addSubPublications(Set<Publication> subPubs){
+	public Publication addSubPublications(Set<SubPublication> subPubs){
 		subPublications.addAll(subPubs);
 		return this;
 	}
@@ -100,26 +115,14 @@ public class Publication {
 			return false;
 		}
 		Publication other = (Publication) obj;
-		if (dateOfPublish == null) {
-			if (other.dateOfPublish != null) {
-				return false;
-			}
-		} else if (!dateOfPublish.equals(other.dateOfPublish)) {
-			return false;
-		}
+		
 		if (dto == null) {
 			if (other.dto != null) {
 				return false;
 			}
 		} else if (!dto.equals(other.dto)) {
 			return false;
-		}
-		if (lendable != other.lendable) {
-			return false;
-		}
-		if (numberOfPieces != other.numberOfPieces) {
-			return false;
-		}
+		}		
 		if (placeOfPublication == null) {
 			if (other.placeOfPublication != null) {
 				return false;
@@ -186,11 +189,11 @@ public class Publication {
 		this.placeOfPublication = placeOfPublication;
 	}
 
-	public Set<Publication> getSubPublications() {
+	public Set<SubPublication> getSubPublications() {
 		return subPublications;
 	}
 
-	public void setSubPublications(Set<Publication> subPublications) {
+	public void setSubPublications(Set<SubPublication> subPublications) {
 		this.subPublications = subPublications;
 	}
 
@@ -213,7 +216,7 @@ public class Publication {
 		retMap.put(dto.getTitle(), stringVal);
 		retMap.put(dto.getAuthors().toString(), stringVal);
 		retMap.put(publisher, stringVal);
-		retMap.put((new SimpleDateFormat("YYYY-MM-DD").format(dateOfPublish)), dateVal);
+		retMap.put(dateOfPublish.toString(), dateVal);
 		retMap.put(dto.getCategories().toString(), stringVal);
 		retMap.put(hasSubPublications()? "igen": "nem", stringVal);
 		retMap.put(String.valueOf(numberOfPieces), intVal);

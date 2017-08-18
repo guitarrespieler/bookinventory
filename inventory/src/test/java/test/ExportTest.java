@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 import org.junit.Before;
@@ -26,7 +27,7 @@ public class ExportTest {
 		pub.addAuthor("Douglas Adams").
 		addCategory("Scifi").addCategory("Tudomány").
 		addPublicationType("könyv").
-		setDateOfPublish(Calendar.getInstance().getTime());
+		setDateOfPublish(LocalDate.now());
 		
 		pub.getDto().setTitle("Galaxis útikalaúz stopposoknak");
 		pub.getDto().setComment("nocomment..");

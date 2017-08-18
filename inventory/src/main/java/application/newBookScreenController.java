@@ -14,8 +14,10 @@ import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
 import model.Inventory;
+import model.Place;
 import model.Publication;
 import model.PublicationDTO;
+import model.SubPublication;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.DatePicker;
@@ -59,11 +61,8 @@ public class newBookScreenController {
 	private Set<String> authors = new HashSet<>();
 	private Set<String> pubTypes = new HashSet<>();
 	private Set<String> categories = new HashSet<>();
-	private Set<String> rooms = new HashSet<>();
-	private Set<String> bookCases = new HashSet<>();
-	private Set<String> bookshelves = new HashSet<>();
 	
-	private Set<Publication> subPublications = new HashSet<>();
+	private Set<SubPublication> subPublications = new HashSet<>();
 	
 	public newBookScreenController(Inventory inventory) {
 		this.inventory = inventory;
@@ -104,6 +103,10 @@ public class newBookScreenController {
 		newPub.setDateOfPublish(dateOfPublish.getValue());
 		newPub.setPublisher(publisherTF.getText());
 		
+		Place place = new Place(roomTF.getText(), caseTF.getText(), shelfTF.getText());
+		
+		newPub.setPlaceOfPublication(place);
+		
 		return newPub;
 	}
 
@@ -111,9 +114,6 @@ public class newBookScreenController {
 		authors.clear();
 		pubTypes.clear();
 		categories.clear();
-		rooms.clear();
-		bookCases.clear();
-		bookshelves.clear();		
 	}
 
 }

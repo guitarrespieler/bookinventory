@@ -55,12 +55,12 @@ public class Inventory {
 		
 		Iterator<SubPublication> iterator = newPub.getSubPublications().iterator();
 		while (iterator.hasNext()) {
-			SubPublication subPublication = iterator.next();
+			PublicationDTO dto = iterator.next().getDto();
 			
-			titles.add(subPublication.getDto().getTitle());
-			authors.addAll(subPublication.getDto().getAuthors());
-			publicatoinTypes.addAll(subPublication.getDto().getPublicationType());
-			categories.addAll(subPublication.getDto().getCategories());
+			titles.add(dto.getTitle());
+			authors.addAll(dto.getAuthors());
+			publicatoinTypes.addAll(dto.getPublicationType());
+			categories.addAll(dto.getCategories());
 		}
 	}
 	

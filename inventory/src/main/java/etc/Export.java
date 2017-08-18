@@ -53,15 +53,18 @@ public class Export {
 			HashMap<ExportHeader, String> publicationExportData = publication.getExportData();
 			fillRow(publicationExportData, row);
 			
-			Row  bookSheetRow = bookSheet.createRow(bookSheetRowNum++);
+			Row bookSheetRow;
 			
-			if(publication.hasSubPublications()){				
+			if(publication.hasSubPublications()){
+				
 				Iterator<SubPublication> iterator = publication.getSubPublications().iterator();				
 				while (iterator.hasNext()) {
+					bookSheetRow = bookSheet.createRow(bookSheetRowNum++);
 					SubPublication subPublication = iterator.next();					
-					fillRow(subPublication.getExportData(), bookSheetRow);					
+					fillRow(subPublication.getExportData(), bookSheetRow);	
 				}				
 			}else{
+				bookSheetRow = bookSheet.createRow(bookSheetRowNum++);
 				Map<ExportHeader, String> bookSheetData = new HashMap<>();				
 				bookSheetData.put(ExportHeader.title, publicationExportData.get(ExportHeader.title));
 				bookSheetData.put(ExportHeader.author, publicationExportData.get(ExportHeader.author));

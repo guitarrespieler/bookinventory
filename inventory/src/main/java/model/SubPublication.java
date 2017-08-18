@@ -1,13 +1,33 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import etc.ExportHeader;
 
 public class SubPublication {
 	private PublicationDTO dto = new PublicationDTO();
 	
-	private String parent = new String();
+	private String parent = "";
+	
+	public SubPublication addAuthors(Set<String> authors){
+		dto.getAuthors().addAll(authors);
+		return this;
+	}
+	
+	public SubPublication addCategories(Set<String> categories){
+		dto.getCategories().addAll(categories);
+		return this;
+	}
+	public SubPublication addTitle(String title){
+		dto.setTitle(title);
+		return this;
+	}
+	public SubPublication addParent(String parent){
+		this.parent = parent;
+		return this;
+	}
+	
 	
 	public HashMap<ExportHeader, String> getExportData() {
 		HashMap<ExportHeader, String> retMap = new HashMap<>();

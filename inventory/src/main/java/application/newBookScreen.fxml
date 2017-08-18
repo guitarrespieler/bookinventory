@@ -38,42 +38,22 @@
                         <Font name="Arial" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="PublicationTypeTF" layoutX="180.0" layoutY="179.0" prefHeight="25.0" prefWidth="210.0">
-                     <font>
-                        <Font name="Arial" size="14.0" />
-                     </font>
-                  </TextField>
-                  <Button fx:id="addAuthorBtn" layoutX="403.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#addAuthor" text="Hozzáad">
-                     <font>
-                        <Font name="Arial" size="14.0" />
-                     </font>
-                  </Button>
-                  <TextField fx:id="categoryTF" layoutX="180.0" layoutY="212.0" prefHeight="25.0" prefWidth="210.0">
-                     <font>
-                        <Font name="Arial" size="14.0" />
-                     </font>
-                  </TextField>
-                  <Button fx:id="addPubTypeBtn" layoutX="403.0" layoutY="179.0" mnemonicParsing="false" onMouseClicked="#addPublicationType" text="Hozzáad">
-                     <font>
-                        <Font name="Arial" size="14.0" />
-                     </font>
-                  </Button>
                   <TextField fx:id="publisherTF" layoutX="180.0" layoutY="110.0" prefHeight="25.0" prefWidth="210.0">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
                   </TextField>
                   <DatePicker fx:id="dateOfPublish" PromptText="Kiadás dátuma" layoutX="180.0" layoutY="143.0" prefHeight="25.0" prefWidth="210.0" promptText=" " />
-                  <Button fx:id="saveBtn" layoutX="864.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#saveBtnClicked" prefHeight="26.0" prefWidth="79.0" text="Mentés">
+                  <TextField fx:id="PublicationTypeTF" layoutX="180.0" layoutY="179.0" prefHeight="25.0" prefWidth="210.0">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
-                  </Button>
-                  <Label layoutX="32.0" layoutY="266.0" text="Kiadvány helye">
+                  </TextField>
+                  <TextField fx:id="categoryTF" layoutX="180.0" layoutY="212.0" prefHeight="25.0" prefWidth="210.0">
                      <font>
-                        <Font name="Arial Bold" size="18.0" />
+                        <Font name="Arial" size="14.0" />
                      </font>
-                  </Label>
+                  </TextField>
                   <TextField fx:id="roomTF" layoutX="180.0" layoutY="294.0" prefHeight="25.0" prefWidth="210.0">
                      <font>
                         <Font name="Arial" size="14.0" />
@@ -89,21 +69,42 @@
                         <Font name="Arial" size="14.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="addCategoryBtn" layoutX="403.0" layoutY="212.0" mnemonicParsing="false" onMouseClicked="#addCategory" text="Hozzáad">
-                     <font>
-                        <Font name="Arial" size="14.0" />
-                     </font>
-                  </Button>
+                  <TextArea fx:id="comment" layoutX="614.0" layoutY="55.0" prefHeight="160.0" prefWidth="328.0" />
                   <RadioButton fx:id="lendableCB" contentDisplay="RIGHT" layoutX="608.0" layoutY="331.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" text="Kölcsönadható?" textAlignment="CENTER">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
                   </RadioButton>
+                  <Button fx:id="addAuthorBtn" layoutX="403.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#addAuthor" text="Hozzáad">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="addPubTypeBtn" layoutX="403.0" layoutY="179.0" mnemonicParsing="false" onMouseClicked="#addPublicationType" text="Hozzáad">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="addCategoryBtn" layoutX="403.0" layoutY="212.0" mnemonicParsing="false" onMouseClicked="#addCategory" text="Hozzáad">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="addSubPublicationBtn" layoutX="866.0" layoutY="291.0" mnemonicParsing="false" onMouseClicked="#addSubPublication" text="Hozzáad">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Button>
+                  <Button fx:id="saveBtn" layoutX="765.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#saveBtnClicked" prefHeight="66.0" prefWidth="178.0" text="Mentés">
+                     <font>
+                        <Font name="Arial" size="30.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="32.0" layoutY="266.0" text="Kiadvány helye">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
                   <Label layoutX="595.0" layoutY="266.0" text="További kiadványok">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
@@ -114,7 +115,6 @@
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="comment" layoutX="614.0" layoutY="55.0" prefHeight="160.0" prefWidth="328.0" />
                   <Label layoutX="595.0" layoutY="20.0" text="Megjegyzés">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
@@ -165,6 +165,11 @@
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
+                  <Button layoutX="451.0" layoutY="457.0" mnemonicParsing="false" onMouseClicked="#createExcelExport" text="Excel export">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </center>

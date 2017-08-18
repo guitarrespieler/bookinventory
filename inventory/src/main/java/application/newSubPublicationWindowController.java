@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import javax.swing.border.TitledBorder;
-
 import org.controlsfx.control.textfield.TextFields;
 
 import javafx.fxml.FXML;
@@ -42,11 +40,24 @@ public class newSubPublicationWindowController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		bindAutoCompleteFields();		
 	}
-			
-	private void bindAutoCompleteFields() {
+	
+	public void bindAutoCompleteFields() {
 		TextFields.bindAutoCompletion(subPubTitleTF, Main.inventory.getTitles());
 		TextFields.bindAutoCompletion(subPubAuthorTF, Main.inventory.getAuthors());
 		TextFields.bindAutoCompletion(subPubCategoryTF, Main.inventory.getCategories());
+	}
+	
+	// Event Listener on Button[#subPubAddAuthorBtn].onMouseClicked
+	@FXML
+	public void addSubPubAuthor(MouseEvent event) {
+		authors.add(newBookScreenController.checkNullOrEmpty(subPubAuthorTF.getText()));
+		subPubAuthorTF.clear();
+	}
+	// Event Listener on Button[#subPubAddCategoryBtn].onMouseClicked
+	@FXML
+	public void addSubPubCategory(MouseEvent event) {
+		categories.add(newBookScreenController.checkNullOrEmpty(subPubCategoryTF.getText()));
+		subPubCategoryTF.clear();
 	}
 
 	// Event Listener on Button[#subPubSaveBtn].onMouseClicked
@@ -55,6 +66,8 @@ public class newSubPublicationWindowController implements Initializable{
 		newBookScreenController.subPublications.add(createSubPublicationFromFields());
 		
 		clearFields();
+		
+		bindAutoCompleteFields();
 		
 		Main.subPublicationStage.close();
 	}
@@ -71,13 +84,12 @@ public class newSubPublicationWindowController implements Initializable{
 	private SubPublication createSubPublicationFromFields() {
 		SubPublication subPub = new SubPublication();
 		
-		subPub.getDto().setTitle(newBookScreenController.checkNullOrEmpty(subPubTitleTF.getText()));
+		addSubPubAuthor(null);
+		addSubPubCategory(null);
 		
-		authors.add(newBookScreenController.checkNullOrEmpty(subPubAuthorTF.getText()));
-		categories.add(newBookScreenController.checkNullOrEmpty(subPubCategoryTF.getText()));
-		
-		subPub.getDto().setAuthors(authors);
-		subPub.getDto().setCategories(categories);
+		subPub.addTitle(newBookScreenController.checkNullOrEmpty(subPubTitleTF.getText())).
+				addAuthors(authors).
+				addCategories(categories);
 		
 		return subPub;
 	}

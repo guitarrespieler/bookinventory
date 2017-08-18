@@ -1,6 +1,8 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -9,6 +11,7 @@ import java.util.Set;
 
 import org.controlsfx.control.textfield.TextFields;
 
+import etc.Export;
 import etc.Serializer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +19,6 @@ import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import model.Inventory;
 import model.Place;
 import model.Publication;
 import model.SubPublication;
@@ -78,8 +80,6 @@ public class newBookScreenController implements Initializable{
 		saveBtn.setOnMouseClicked(this::saveBtnClicked);
 		addCategoryBtn.setOnMouseClicked(this::addCategory);
 		addSubPublicationBtn.setOnMouseClicked(this::addSubPublication);
-		
-		
 	}
 
 	private void bindAutoCompleteFields() {
@@ -168,6 +168,16 @@ public class newBookScreenController implements Initializable{
 	@FXML
 	public void addSubPublication(MouseEvent event) {
 		Main.subPublicationStage.show();
+	}
+	
+	@FXML
+	public void createExcelExport(MouseEvent event){
+		try {
+			Export.exportInventory(Main.inventory);
+		} catch (IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void clearFields() {

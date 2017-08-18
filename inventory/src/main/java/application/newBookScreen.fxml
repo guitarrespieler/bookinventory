@@ -4,15 +4,14 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="application.SampleController">
-   <center>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+   <right>
       <BorderPane prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <top>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="96.0" prefWidth="108.0" text="Könyvtár" textAlignment="CENTER" BorderPane.alignment="CENTER">
@@ -21,7 +20,7 @@
                </font>
             </Label>
          </top>
-         <left>
+         <center>
             <Pane prefHeight="546.0" prefWidth="437.0" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutX="32.0" layoutY="3.0" text="Új kiadvány">
@@ -65,7 +64,7 @@
                      </font>
                   </TextField>
                   <DatePicker fx:id="dateOfPublish" layoutX="50.0" layoutY="142.0" prefHeight="29.0" prefWidth="212.0" promptText="Kiadás dátuma" />
-                  <Button fx:id="saveBtn" layoutX="272.0" layoutY="441.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" text="Mentés">
+                  <Button fx:id="saveBtn" layoutX="691.0" layoutY="407.0" mnemonicParsing="false" onMouseReleased="#saveBtnPressed" prefHeight="26.0" prefWidth="79.0" text="Mentés">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
@@ -95,110 +94,35 @@
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Button>
-                  <RadioButton fx:id="lendableCB" contentDisplay="RIGHT" layoutX="136.0" layoutY="445.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" text="Kölcsönadható?" textAlignment="CENTER">
+                  <RadioButton fx:id="lendableCB" contentDisplay="RIGHT" layoutX="438.0" layoutY="319.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" selected="true" text="Kölcsönadható?" textAlignment="CENTER">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
                   </RadioButton>
-                  <Button fx:id="addSubPublicationBtn" layoutX="274.0" layoutY="390.0" mnemonicParsing="false" text="Hozzáad">
+                  <Button fx:id="addSubPublicationBtn" layoutX="693.0" layoutY="261.0" mnemonicParsing="false" text="Hozzáad">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Button>
-                  <Label layoutX="37.0" layoutY="374.0" text="További kiadványok">
+                  <Label layoutX="422.0" layoutY="244.0" text="További kiadványok">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="83.0" layoutY="395.0" text="Tartalmaz további műveket?">
+                  <Label layoutX="435.0" layoutY="274.0" text="Tartalmaz további műveket?">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Label>
+                  <TextArea fx:id="comment" layoutX="441.0" layoutY="62.0" prefHeight="160.0" prefWidth="328.0" />
+                  <Label layoutX="422.0" layoutY="36.0" text="Megjegyzés">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
-         </left>
-         <right>
-            <VBox prefHeight="504.0" prefWidth="360.0" visible="false" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="titleLbl" alignment="TOP_CENTER" prefHeight="59.0" prefWidth="360.0" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="360.0" text="Szerző(k)">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="authorLbl" alignment="TOP_CENTER" prefHeight="40.0" prefWidth="360.0" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="360.0" text="Kiadó">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="publisherLbl" alignment="TOP_CENTER" prefHeight="40.0" prefWidth="360.0" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="360.0" text="Kiadás dátuma">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="dateOfPublishLbl" alignment="TOP_CENTER" prefHeight="40.0" prefWidth="360.0" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="360.0" text="Kategória">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryLbl" alignment="TOP_CENTER" prefHeight="35.0" prefWidth="360.0" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="360.0" text="Kiadvány típusa">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="pubTypeLbl" alignment="TOP_CENTER" prefHeight="35.0" prefWidth="360.0" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="360.0" text="Kiadvány helye">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="placeLbl" alignment="TOP_CENTER" prefHeight="35.0" prefWidth="360.0" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="360.0" text="Tartalmazott művek">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="subPubsLbl" alignment="TOP_CENTER" prefHeight="35.0" prefWidth="360.0" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-         </right>
+         </center>
       </BorderPane>
-   </center>
+   </right>
 </BorderPane>

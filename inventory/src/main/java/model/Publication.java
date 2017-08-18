@@ -1,11 +1,11 @@
 package model;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Set;
 
 public class Publication {
@@ -13,7 +13,7 @@ public class Publication {
 	
 	private String publisher = "";
 	
-	private Date dateOfPublish = Calendar.getInstance().getTime();
+	private LocalDate dateOfPublish = LocalDate.now();
 	
 	private boolean lendable = true;
 	
@@ -31,13 +31,18 @@ public class Publication {
 	
 	public Publication(){}
 	
-	public Publication addAuthor(String author){
-		dto.getAuthors().add(author);
+	public Publication addTitle(String title){
+		dto.setTitle(title);
 		return this;
 	}
 	
-	public Publication addPublicationType(String type){
-		dto.getPublicationType().add(type);
+	public Publication addAuthors(Set<String> authors){
+		dto.getAuthors().addAll(authors);
+		return this;
+	}
+	
+	public Publication addPublicationTypes(Set<String> types){
+		dto.getPublicationType().addAll(types);
 		return this;		
 	}
 	
@@ -45,13 +50,18 @@ public class Publication {
 		return !subPublications.isEmpty();
 	}
 
-	public Publication addCategory(String categoryName){
-		dto.getCategories().add(categoryName);
+	public Publication addCategories(Set<String> categories){
+		dto.getCategories().addAll(categories);
 		return this;
 	}
 	
-	public Publication addSubPublication(Publication pub){
-		subPublications.add(pub);
+	public Publication addSubPublications(Set<Publication> subPubs){
+		subPublications.addAll(subPubs);
+		return this;
+	}
+	
+	public Publication addComment(String comment){
+		dto.setComment(comment);
 		return this;
 	}
 	
@@ -90,11 +100,11 @@ public class Publication {
 		this.publisher = publisher;
 	}
 
-	public Date getDateOfPublish() {
+	public LocalDate getDateOfPublish() {
 		return dateOfPublish;
 	}
 
-	public void setDateOfPublish(Date dateOfPublish) {
+	public void setDateOfPublish(LocalDate dateOfPublish) {
 		this.dateOfPublish = dateOfPublish;
 	}
 

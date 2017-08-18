@@ -1,22 +1,23 @@
 package application;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.controlsfx.control.textfield.TextFields;
 
-import com.sun.javafx.scene.control.skin.TextFieldSkin;
-
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
 import model.Inventory;
-import javafx.scene.control.Label;
-
+import model.Publication;
+import model.PublicationDTO;
 import javafx.scene.control.RadioButton;
-
+import javafx.scene.control.TextArea;
 import javafx.scene.control.DatePicker;
 
 public class newBookScreenController {
@@ -51,26 +52,65 @@ public class newBookScreenController {
 	@FXML
 	private Button addSubPublicationBtn;
 	@FXML
-	private Label titleLbl;
-	@FXML
-	private Label authorLbl;
-	@FXML
-	private Label publisherLbl;
-	@FXML
-	private Label dateOfPublishLbl;
-	@FXML
-	private Label categoryLbl;
-	@FXML
-	private Label pubTypeLbl;
-	@FXML
-	private Label placeLbl;
-	@FXML
-	private Label subPubsLbl;
+	private TextArea comment;	
 	
 	private Inventory inventory;
 	
+	private Set<String> authors = new HashSet<>();
+	private Set<String> pubTypes = new HashSet<>();
+	private Set<String> categories = new HashSet<>();
+	private Set<String> rooms = new HashSet<>();
+	private Set<String> bookCases = new HashSet<>();
+	private Set<String> bookshelves = new HashSet<>();
+	
 	public newBookScreenController(Inventory inventory) {
 		this.inventory = inventory;
+		
+		bindAutoCompleteFields();
+	}
+
+	private void bindAutoCompleteFields() {
+		TextFields.bindAutoCompletion(authorTF, inventory.getAuthors());
+		TextFields.bindAutoCompletion(publisherTF, inventory.getPublishers());
+		TextFields.bindAutoCompletion(PublicationTypeTF, inventory.getPublicatoinTypes());
+		TextFields.bindAutoCompletion(categoryTF, inventory.getCategories());
+		TextFields.bindAutoCompletion(roomTF, inventory.getRooms());
+		TextFields.bindAutoCompletion(caseTF, inventory.getBookCases());
+		TextFields.bindAutoCompletion(shelfTF, inventory.getBookShelves());		
+	}
+	
+	@FXML
+	public void saveBtnPressed(){
+		Publication newPub = createPublicationFromFields();
+		
+		inventory.addPublication(newPub);
+		
+		clearSets();
+	}
+
+	private void clearSets() {
+		authors.clear();
+		pubTypes.clear();
+		categories.clear();
+		rooms.clear();
+		bookCases.clear();
+		bookshelves.clear();		
+	}
+
+	private Publication createPublicationFromFields() {
+		Publication newPub = new Publication();
+		
+		newPub.addTitle(titleTF.getText()).
+		addAuthors(authors).
+		addCategories(categories).
+		addPublicationTypes(pubTypes).
+		addComment(comment.getText())
+		.setLendable(lendableCB.isSelected());
+		
+		newPub.setDateOfPublish(dateOfPublish.getValue());
+		newPub.setPublisher(publisherTF.getText());
+		
+		return newPub;
 	}
 	
 

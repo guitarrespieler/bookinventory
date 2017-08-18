@@ -1,10 +1,11 @@
 package model;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.Set;
+
+import etc.ExportHeader;
 
 public class Publication {
 	private PublicationDTO dto = new PublicationDTO();
@@ -205,26 +206,21 @@ public class Publication {
 		this.dto = dto;
 	}
 
-	/**
-	 * Key: value to write into the export file
-	 * value: type of the data (String, Date ? )
-	 * @return
-	 */
-	public LinkedHashMap<String, String> getExportData() {
-		LinkedHashMap<String, String> retMap = new LinkedHashMap<>();
+	public HashMap<ExportHeader, String> getExportData() {
+		HashMap<ExportHeader, String> retMap = new HashMap<>();
 		
-		retMap.put(dto.getTitle(), stringVal);
-		retMap.put(dto.getAuthors().toString(), stringVal);
-		retMap.put(publisher, stringVal);
-		retMap.put(dateOfPublish.toString(), dateVal);
-		retMap.put(dto.getCategories().toString(), stringVal);
-		retMap.put(hasSubPublications()? "igen": "nem", stringVal);
-		retMap.put(String.valueOf(numberOfPieces), intVal);
-		retMap.put(dto.getComment(), stringVal);
-		retMap.put(lendable? "igen": "nem", stringVal);
-		retMap.put(placeOfPublication.getRoom(), stringVal);
-		retMap.put(placeOfPublication.getBookCase(), stringVal);
-		retMap.put(placeOfPublication.getBookShelf(), stringVal);
+		retMap.put(ExportHeader.title, dto.getTitle());
+		retMap.put(ExportHeader.author, dto.getAuthors().toString());
+		retMap.put(ExportHeader.publisher, getPublisher());
+		retMap.put(ExportHeader.date_of_publish, dateOfPublish.toString());
+		retMap.put(ExportHeader.categories, dto.getCategories().toString());
+		retMap.put(ExportHeader.hasSubpublications, hasSubPublications()? "igen": "nem");
+		retMap.put(ExportHeader.number_of_pieces, String.valueOf(numberOfPieces));
+		retMap.put(ExportHeader.comment, dto.getComment());
+		retMap.put(ExportHeader.lendable, lendable? "igen": "nem");
+		retMap.put(ExportHeader.room, placeOfPublication.getRoom());
+		retMap.put(ExportHeader.bookCase, placeOfPublication.getBookCase());
+		retMap.put(ExportHeader.bookShelf, placeOfPublication.getBookShelf());
 		
 		return retMap;
 	}

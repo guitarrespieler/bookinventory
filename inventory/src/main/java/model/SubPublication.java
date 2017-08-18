@@ -1,9 +1,27 @@
 package model;
 
+import java.util.HashMap;
+
+import etc.ExportHeader;
+
 public class SubPublication {
 	PublicationDTO dto = new PublicationDTO();
 	
 	Publication parent = new Publication();
+	
+	public HashMap<ExportHeader, String> getExportData() {
+		HashMap<ExportHeader, String> retMap = new HashMap<>();
+		
+		retMap.put(ExportHeader.title, dto.getTitle());
+		retMap.put(ExportHeader.author, dto.getAuthors().toString());
+		retMap.put(ExportHeader.categories, dto.getCategories().toString());
+		
+		dto.setComment("Ez a könyv tartalmazza: " + parent.getDto().getTitle());
+		retMap.put(ExportHeader.comment, dto.getComment());
+		
+		return retMap;
+	}
+	
 
 	public PublicationDTO getDto() {
 		return dto;

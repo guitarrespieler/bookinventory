@@ -1,11 +1,18 @@
 package application;
 
-import javafx.fxml.FXML;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import org.controlsfx.control.textfield.TextFields;
+
+import com.sun.javafx.scene.control.skin.TextFieldSkin;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
-
+import model.Inventory;
 import javafx.scene.control.Label;
 
 import javafx.scene.control.RadioButton;
@@ -59,5 +66,12 @@ public class newBookScreenController {
 	private Label placeLbl;
 	@FXML
 	private Label subPubsLbl;
+	
+	private Inventory inventory;
+	
+	public newBookScreenController(Inventory inventory) {
+		this.inventory = inventory;
+	}
+	
 
 }

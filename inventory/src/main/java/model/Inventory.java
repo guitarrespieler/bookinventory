@@ -47,6 +47,19 @@ public class Inventory {
 		categories.addAll(newPub.getDto().getCategories());
 		rooms.add(newPub.getPlaceOfPublication().getRoom());
 		bookCases.add(newPub.getPlaceOfPublication().getBookCase());
+		
+		if(!newPub.hasSubPublications())
+			return;
+		
+		Iterator<SubPublication> iterator = newPub.getSubPublications().iterator();
+		while (iterator.hasNext()) {
+			SubPublication subPublication = iterator.next();
+			
+			titles.add(subPublication.getDto().getTitle());
+			authors.addAll(subPublication.getDto().getAuthors());
+			publicatoinTypes.addAll(subPublication.getDto().getPublicationType());
+			categories.addAll(subPublication.getDto().getCategories());
+		}
 	}
 	
 	@Override

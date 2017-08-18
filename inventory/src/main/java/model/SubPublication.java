@@ -5,9 +5,9 @@ import java.util.HashMap;
 import etc.ExportHeader;
 
 public class SubPublication {
-	PublicationDTO dto = new PublicationDTO();
+	private PublicationDTO dto = new PublicationDTO();
 	
-	Publication parent = new Publication();
+	private Publication parent = new Publication();
 	
 	public HashMap<ExportHeader, String> getExportData() {
 		HashMap<ExportHeader, String> retMap = new HashMap<>();

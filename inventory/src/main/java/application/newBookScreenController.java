@@ -87,23 +87,38 @@ public class newBookScreenController {
 		inventory.addPublication(newPub);
 		
 		clearSets();
+		clearFields();
+	}
+
+	private void clearFields() {
+		authorTF.clear();
+		caseTF.clear();
+		categoryTF.clear();
+		PublicationTypeTF.clear();
+		publisherTF.clear();
+		roomTF.clear();
+		shelfTF.clear();
+		titleTF.clear();
+		
 	}
 
 	private Publication createPublicationFromFields() {
 		Publication newPub = new Publication();
 		
-		newPub.addTitle(titleTF.getText()).
+		newPub.addTitle(checkNullOrEmpty(titleTF.getText())).
 		addAuthors(authors).
 		addCategories(categories).
 		addPublicationTypes(pubTypes).
 		addSubPublications(subPublications).
-		addComment(comment.getText()).
+		addComment(checkNullOrEmpty(comment.getText())).
 		setLendable(lendableCB.isSelected());
 		
-		newPub.setDateOfPublish(dateOfPublish.getValue());
-		newPub.setPublisher(publisherTF.getText());
+		newPub.setDateOfPublish(dateOfPublish.getValue() == null? LocalDate.now() : dateOfPublish.getValue());
+		newPub.setPublisher(checkNullOrEmpty(publisherTF.getText()));
 		
-		Place place = new Place(roomTF.getText(), caseTF.getText(), shelfTF.getText());
+		Place place = new Place(checkNullOrEmpty(roomTF.getText()), 
+								checkNullOrEmpty(caseTF.getText()), 
+								checkNullOrEmpty(shelfTF.getText()));
 		
 		newPub.setPlaceOfPublication(place);
 		
@@ -114,6 +129,14 @@ public class newBookScreenController {
 		authors.clear();
 		pubTypes.clear();
 		categories.clear();
+	}
+	
+	private String checkNullOrEmpty(String value){
+		if(value == null)
+			return "";
+		if(value.isEmpty())
+			return "";
+		return value;
 	}
 
 }

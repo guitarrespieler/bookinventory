@@ -146,6 +146,10 @@ public class newBookScreenController implements Initializable{
 	}
 
 	private Publication createPublicationFromFields() {
+		addAuthor(null);
+		addCategory(null);
+		addPublicationType(null);
+		
 		Publication newPub = new Publication();
 		
 		newPub.addTitle(checkNullOrEmpty(titleTF.getText())).

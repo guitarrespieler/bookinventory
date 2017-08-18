@@ -47,6 +47,7 @@ public class Inventory {
 		categories.addAll(newPub.getDto().getCategories());
 		rooms.add(newPub.getPlaceOfPublication().getRoom());
 		bookCases.add(newPub.getPlaceOfPublication().getBookCase());
+		bookShelves.add(newPub.getPlaceOfPublication().getBookShelf());
 		
 		if(!newPub.hasSubPublications())
 			return;

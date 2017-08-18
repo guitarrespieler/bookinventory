@@ -36,14 +36,14 @@ public class newSubPublicationWindowController {
 	private Set<SubPublication> subPublications = new HashSet<>();
 	
 	private Inventory inventory;
-	
+		
 	public newSubPublicationWindowController(Inventory inventory) {
 		this.inventory = inventory;
 		
-		initAutoComplete();
+		bindAutoCompleteFields();
 	}
 
-	private void initAutoComplete() {
+	private void bindAutoCompleteFields() {
 		TextFields.bindAutoCompletion(subPubTitleTF, inventory.getTitles());
 		TextFields.bindAutoCompletion(subPubAuthorTF, inventory.getAuthors());
 		TextFields.bindAutoCompletion(subPubCategoryTF, inventory.getCategories());
@@ -54,8 +54,7 @@ public class newSubPublicationWindowController {
 	public void saveSubPublication(MouseEvent event) {
 		subPublications.add(createSubPublicationFromFields());
 		
-		Stage stage = (Stage)subPubSaveBtn.getScene().getWindow();
-		stage.close();
+		this.getStage().close();
 	}
 
 	private SubPublication createSubPublicationFromFields() {
@@ -65,5 +64,9 @@ public class newSubPublicationWindowController {
 		subPub.getDto().setCategories(categories);
 		
 		return subPub;
+	}
+	
+	public Stage getStage(){
+		return (Stage)subPubSaveBtn.getScene().getWindow();
 	}
 }

@@ -1,22 +1,24 @@
 package application;
 
+import java.net.URL;
 import java.util.HashSet;
+import java.util.ResourceBundle;
 import java.util.Set;
+
+import javax.swing.border.TitledBorder;
 
 import org.controlsfx.control.textfield.TextFields;
 
 import javafx.fxml.FXML;
-
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
 
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import model.Inventory;
 import model.SubPublication;
 
-public class newSubPublicationWindowController {
+public class newSubPublicationWindowController implements Initializable{
 	@FXML
 	private TextField subPubTitleTF;
 	@FXML
@@ -33,40 +35,52 @@ public class newSubPublicationWindowController {
 	private Set<String> authors = new HashSet<>();
 	private Set<String> categories = new HashSet<>();
 	
-	private Set<SubPublication> subPublications = new HashSet<>();
+	public newSubPublicationWindowController(){}
 	
-	private Inventory inventory;
-		
-	public newSubPublicationWindowController(Inventory inventory) {
-		this.inventory = inventory;
-		
-		bindAutoCompleteFields();
-	}
 
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		bindAutoCompleteFields();		
+	}
+			
 	private void bindAutoCompleteFields() {
-		TextFields.bindAutoCompletion(subPubTitleTF, inventory.getTitles());
-		TextFields.bindAutoCompletion(subPubAuthorTF, inventory.getAuthors());
-		TextFields.bindAutoCompletion(subPubCategoryTF, inventory.getCategories());
+		TextFields.bindAutoCompletion(subPubTitleTF, Main.inventory.getTitles());
+		TextFields.bindAutoCompletion(subPubAuthorTF, Main.inventory.getAuthors());
+		TextFields.bindAutoCompletion(subPubCategoryTF, Main.inventory.getCategories());
 	}
 
 	// Event Listener on Button[#subPubSaveBtn].onMouseClicked
 	@FXML
 	public void saveSubPublication(MouseEvent event) {
-		subPublications.add(createSubPublicationFromFields());
+		newBookScreenController.subPublications.add(createSubPublicationFromFields());
 		
-		this.getStage().close();
+		clearFields();
+		
+		Main.subPublicationStage.close();
+	}
+
+	private void clearFields() {
+		subPubTitleTF.clear();
+		subPubAuthorTF.clear();
+		subPubCategoryTF.clear();
+		
+		authors.clear();
+		categories.clear();
 	}
 
 	private SubPublication createSubPublicationFromFields() {
 		SubPublication subPub = new SubPublication();
+		
+		subPub.getDto().setTitle(newBookScreenController.checkNullOrEmpty(subPubTitleTF.getText()));
+		
+		authors.add(newBookScreenController.checkNullOrEmpty(subPubAuthorTF.getText()));
+		categories.add(newBookScreenController.checkNullOrEmpty(subPubCategoryTF.getText()));
 		
 		subPub.getDto().setAuthors(authors);
 		subPub.getDto().setCategories(categories);
 		
 		return subPub;
 	}
-	
-	public Stage getStage(){
-		return (Stage)subPubSaveBtn.getScene().getWindow();
-	}
+
+
 }

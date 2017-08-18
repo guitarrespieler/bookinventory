@@ -7,7 +7,7 @@ import etc.ExportHeader;
 public class SubPublication {
 	private PublicationDTO dto = new PublicationDTO();
 	
-	private Publication parent = new Publication();
+	private String parent = new String();
 	
 	public HashMap<ExportHeader, String> getExportData() {
 		HashMap<ExportHeader, String> retMap = new HashMap<>();
@@ -16,7 +16,7 @@ public class SubPublication {
 		retMap.put(ExportHeader.author, dto.getAuthors().toString());
 		retMap.put(ExportHeader.categories, dto.getCategories().toString());
 		
-		dto.setComment("Ez a könyv tartalmazza: " + parent.getDto().getTitle());
+		dto.setComment("Ez a könyv tartalmazza: " + parent);
 		retMap.put(ExportHeader.comment, dto.getComment());
 		
 		return retMap;
@@ -31,11 +31,11 @@ public class SubPublication {
 		this.dto = dto;
 	}
 
-	public Publication getParent() {
+	public String getParent() {
 		return parent;
 	}
 
-	public void setParent(Publication parent) {
+	public void setParent(String parent) {
 		this.parent = parent;
 	}
 

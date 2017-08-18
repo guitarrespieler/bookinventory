@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class Inventory {
+	
 	private Set<Publication> publications = new HashSet<>();
 	
 	private Set<String> authors = new HashSet<>();

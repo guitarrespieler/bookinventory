@@ -34,8 +34,6 @@ public class Main extends Application {
 			subPublicationStage = new Stage();
 			subPublicationStage.setScene(scene2);
 			
-			primaryStage.setOnCloseRequest(e -> Serializer.saveInventory(inventory));
-			
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

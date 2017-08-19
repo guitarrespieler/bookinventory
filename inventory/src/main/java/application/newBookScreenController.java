@@ -25,6 +25,7 @@ import model.SubPublication;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 
 public class newBookScreenController implements Initializable{
 	@FXML
@@ -59,6 +60,8 @@ public class newBookScreenController implements Initializable{
 	private Button addSubPublicationBtn;
 	@FXML
 	private TextArea comment;	
+	@FXML
+	private Label kiadvanyokSzamaLbl;
 	
 	private Set<String> authors = new HashSet<>();
 	private Set<String> pubTypes = new HashSet<>();
@@ -98,13 +101,14 @@ public class newBookScreenController implements Initializable{
 	public void addAuthor(MouseEvent event) {
 		authors.add(checkNullOrEmpty(authorTF.getText()));
 		authorTF.clear();
+		bindAutoCompleteFields();
 	}
 	// Event Listener on Button[#addPubTypeBtn].onMouseClicked
 	@FXML
 	public void addPublicationType(MouseEvent event) {
 		pubTypes.add(checkNullOrEmpty(PublicationTypeTF.getText()));
 		PublicationTypeTF.clear();
-		
+		bindAutoCompleteFields();
 	}
 	// Event Listener on Button[#saveBtn].onMouseClicked
 	@FXML
@@ -112,6 +116,7 @@ public class newBookScreenController implements Initializable{
 		Publication newPub = createPublicationFromFields();
 		
 		Main.inventory.addPublication(newPub);
+		kiadvanyokSzamaLbl.setText(String.valueOf(Main.inventory.getPublications().size()));
 		
 		addParentsToSubPublications(newPub.getDto().getTitle());
 		
@@ -121,6 +126,7 @@ public class newBookScreenController implements Initializable{
 		clearFields();
 		
 		Serializer.saveInventory(Main.inventory);
+		
 	}
 	
 	private Publication createPublicationFromFields() {
@@ -163,6 +169,7 @@ public class newBookScreenController implements Initializable{
 	public void addCategory(MouseEvent event) {
 		categories.add(checkNullOrEmpty(categoryTF.getText()));
 		categoryTF.clear();
+		bindAutoCompleteFields();
 	}
 	// Event Listener on Button[#addSubPublicationBtn].onMouseClicked
 	@FXML

@@ -170,6 +170,8 @@
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Button>
+                  <Label layoutX="36.0" layoutY="432.0" text="Eddig regisztrált kiadványok száma:" />
+                  <Label fx:id="kiadvanyokSzamaLbl" layoutX="232.0" layoutY="432.0" prefHeight="17.0" prefWidth="56.0" />
                </children>
             </Pane>
          </center>

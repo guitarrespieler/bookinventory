@@ -74,26 +74,17 @@ public class newBookScreenController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		bindAutoCompleteFields();
-		
-		//WoW :OOOOO
-		//method pointers in Java??? Just wow.
-		
-		addAuthorBtn.setOnMouseClicked(this::addAuthor);
-		addPubTypeBtn.setOnMouseClicked(this::addPublicationType);
-		saveBtn.setOnMouseClicked(this::saveBtnClicked);
-		addCategoryBtn.setOnMouseClicked(this::addCategory);
-		addSubPublicationBtn.setOnMouseClicked(this::addSubPublication);
 	}
 
 	private void bindAutoCompleteFields() {
-		TextFields.bindAutoCompletion(titleTF, Main.inventory.getTitles());
-		TextFields.bindAutoCompletion(authorTF, Main.inventory.getAuthors());
-		TextFields.bindAutoCompletion(publisherTF, Main.inventory.getPublishers());
-		TextFields.bindAutoCompletion(PublicationTypeTF, Main.inventory.getPublicatoinTypes());
-		TextFields.bindAutoCompletion(categoryTF, Main.inventory.getCategories());
-		TextFields.bindAutoCompletion(roomTF, Main.inventory.getRooms());
-		TextFields.bindAutoCompletion(caseTF, Main.inventory.getBookCases());
-		TextFields.bindAutoCompletion(shelfTF, Main.inventory.getBookShelves());		
+		TextFields.bindAutoCompletion(titleTF, Main.inventory.getTitles().toArray());
+		TextFields.bindAutoCompletion(authorTF, Main.inventory.getAuthors().toArray());
+		TextFields.bindAutoCompletion(publisherTF, Main.inventory.getPublishers().toArray());
+		TextFields.bindAutoCompletion(PublicationTypeTF, Main.inventory.getPublicatoinTypes().toArray());
+		TextFields.bindAutoCompletion(categoryTF, Main.inventory.getCategories().toArray());
+		TextFields.bindAutoCompletion(roomTF, Main.inventory.getRooms().toArray());
+		TextFields.bindAutoCompletion(caseTF, Main.inventory.getBookCases().toArray());
+		TextFields.bindAutoCompletion(shelfTF, Main.inventory.getBookShelves().toArray());		
 	}
 	
 	// Event Listener on Button[#addAuthorBtn].onMouseClicked
@@ -101,14 +92,12 @@ public class newBookScreenController implements Initializable{
 	public void addAuthor(MouseEvent event) {
 		authors.add(checkNullOrEmpty(authorTF.getText()));
 		authorTF.clear();
-		bindAutoCompleteFields();
 	}
 	// Event Listener on Button[#addPubTypeBtn].onMouseClicked
 	@FXML
 	public void addPublicationType(MouseEvent event) {
 		pubTypes.add(checkNullOrEmpty(PublicationTypeTF.getText()));
 		PublicationTypeTF.clear();
-		bindAutoCompleteFields();
 	}
 	// Event Listener on Button[#saveBtn].onMouseClicked
 	@FXML
@@ -169,7 +158,6 @@ public class newBookScreenController implements Initializable{
 	public void addCategory(MouseEvent event) {
 		categories.add(checkNullOrEmpty(categoryTF.getText()));
 		categoryTF.clear();
-		bindAutoCompleteFields();
 	}
 	// Event Listener on Button[#addSubPublicationBtn].onMouseClicked
 	@FXML

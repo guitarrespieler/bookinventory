@@ -3,6 +3,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -10,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.newBookScreenController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.newBookScreenController">
    <right>
       <BorderPane prefHeight="600.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <top>
@@ -95,7 +98,7 @@
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="saveBtn" layoutX="765.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#saveBtnClicked" prefHeight="66.0" prefWidth="178.0" text="Mentés">
+                  <Button fx:id="saveBtn" layoutX="767.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#saveBtnClicked" prefHeight="66.0" prefWidth="178.0" text="Mentés">
                      <font>
                         <Font name="Arial" size="30.0" />
                      </font>
@@ -165,16 +168,22 @@
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Button layoutX="451.0" layoutY="457.0" mnemonicParsing="false" onMouseClicked="#createExcelExport" text="Excel export">
-                     <font>
-                        <Font name="Arial" size="14.0" />
-                     </font>
-                  </Button>
-                  <Label layoutX="36.0" layoutY="432.0" text="Eddig regisztrált kiadványok száma:" />
+                  <Label layoutX="50.0" layoutY="424.0" text="Eddig regisztrált kiadványok száma:" />
                   <Label fx:id="kiadvanyokSzamaLbl" layoutX="232.0" layoutY="432.0" prefHeight="17.0" prefWidth="56.0" />
                </children>
             </Pane>
          </center>
       </BorderPane>
    </right>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Export">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#createExcelExport" text="Excel export" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
 </BorderPane>

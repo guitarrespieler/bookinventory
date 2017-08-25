@@ -13,6 +13,7 @@ import org.controlsfx.control.textfield.TextFields;
 
 import etc.Export;
 import etc.Serializer;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -165,8 +166,9 @@ public class newBookScreenController implements Initializable{
 		Main.subPublicationStage.show();
 	}
 	
+	// Event Listener on MenuItem.onAction
 	@FXML
-	public void createExcelExport(MouseEvent event){
+	public void createExcelExport(ActionEvent event) {
 		try {
 			Export.exportInventory(Main.inventory);
 		} catch (IOException | ParseException e) {

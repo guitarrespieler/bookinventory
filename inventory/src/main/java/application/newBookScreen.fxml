@@ -170,6 +170,8 @@
                   </Label>
                   <Label layoutX="50.0" layoutY="424.0" text="Eddig regisztrált kiadványok száma:" />
                   <Label fx:id="kiadvanyokSzamaLbl" layoutX="232.0" layoutY="432.0" prefHeight="17.0" prefWidth="56.0" />
+                  <Button layoutX="403.0" layoutY="143.0" mnemonicParsing="false" onMouseClicked="#setDateToUnknown" text="?" />
+                  <Button layoutX="445.0" layoutY="143.0" mnemonicParsing="false" onMouseClicked="#setDateToActual" text="Ma" />
                </children>
             </Pane>
          </center>

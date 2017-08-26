@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -164,6 +166,17 @@ public class newBookScreenController implements Initializable{
 	@FXML
 	public void addSubPublication(MouseEvent event) {
 		Main.subPublicationStage.show();
+	}
+	
+	// Event Listener on Button.onMouseClicked
+	@FXML
+	public void setDateToUnknown(MouseEvent event) {
+		dateOfPublish.setValue(LocalDate.parse("1900-01-01", DateTimeFormatter.ISO_LOCAL_DATE));
+	}
+	// Event Listener on Button.onMouseClicked
+	@FXML
+	public void setDateToActual(MouseEvent event) {
+		dateOfPublish.setValue(LocalDate.now());
 	}
 	
 	// Event Listener on MenuItem.onAction

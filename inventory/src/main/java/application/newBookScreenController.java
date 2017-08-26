@@ -108,7 +108,7 @@ public class newBookScreenController implements Initializable{
 		Main.inventory.addPublication(newPub);
 		kiadvanyokSzamaLbl.setText(String.valueOf(Main.inventory.getPublications().size()));
 		
-		addParentsToSubPublications(newPub.getDto().getTitle());
+		addParentToSubPublications(newPub.getDto().getTitle());
 		
 		bindAutoCompleteFields();
 		
@@ -146,7 +146,7 @@ public class newBookScreenController implements Initializable{
 		return newPub;
 	}
 	
-	private void addParentsToSubPublications(String parentPubTitle) {
+	private void addParentToSubPublications(String parentPubTitle) {
 		Iterator<SubPublication> iterator = subPublications.iterator();
 		
 		while (iterator.hasNext()) {
@@ -192,6 +192,7 @@ public class newBookScreenController implements Initializable{
 		authors.clear();
 		pubTypes.clear();
 		categories.clear();
+		subPublications.clear();
 	}
 	
 	public static String checkNullOrEmpty(String value){
